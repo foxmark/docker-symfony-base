@@ -80,3 +80,11 @@ docker-compose exec php-service php bin/console about
 ## Finally navigate to http://localhost:8080/ 
 
 > Note: 8080 is a default value of ```HOST_PORT``` variable from ```.env``` file
+
+# Install additional symfony components
+
+## Profiler
+
+```sh
+docker-compose exec php-service composer require --dev symfony/profiler-pack
+```
