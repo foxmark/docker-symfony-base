@@ -2,5 +2,6 @@ version: '3.8'
 
 services:
   php-service:
+#    user: "${UID}:${GID}"
     volumes:
       - ./docker/php/config/100-xdebug.ini:/usr/local/etc/php/conf.d/100-xdebug.ini
