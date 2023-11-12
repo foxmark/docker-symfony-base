@@ -1,0 +1,6 @@
+version: '3.8'
+
+services:
+  php-service:
+    volumes:
+      - ./docker/php/config/100-xdebug.ini:/usr/local/etc/php/conf.d/100-xdebug.ini
