@@ -23,7 +23,7 @@ nano .env
 #### Inspect default ```php.ini``` file and make php config changes
 
 ```sh
-nano nano docker/php/config/99-php.ini
+nano docker/php/config/99-php.ini
 ```
 
 #### Inspect ```docker-compose.override.yml``` file
