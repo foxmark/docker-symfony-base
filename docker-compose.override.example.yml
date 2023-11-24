@@ -7,9 +7,10 @@ networks:
 
 
 services:
-  php_service:
+  php:
     volumes:
       - ./docker/php/config/100-xdebug.ini:/usr/local/etc/php/conf.d/100-xdebug.ini
+    user: "${UID}:${GID}"
     # bith set in .env file - therefor no value set!
     environment:
       - DATABASE_URL
