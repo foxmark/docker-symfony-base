@@ -14,7 +14,11 @@ cd docker-symfony-base
 
 ## Edit Configuration
 
-#### Inspect ```.env``` file and make config changes
+#### Rename and inspect ```.env``` file
+
+```sh
+cp .env.example .env
+```
 
 ```sh
 nano .env
@@ -26,14 +30,27 @@ nano .env
 nano docker/php/config/99-php.ini
 ```
 
-#### Inspect ```docker-compose.override.yml``` file
+# Optional step
+## Enable mysql connection using docker
+
+If you want you could use my other docker setup to run mysql 8 container [docker-mysql-base](https://github.com/foxmark/docker-mysql-base)
+
+> Note: Fallow my [README](https://github.com/foxmark/docker-mysql-base/blob/master/README.md) file and start mysql container first - both repositories are setup to work together without making any changes to the configuration (```.env```) file(s)
+
+> Note2: This will also enable xdebug extension
+
+#### Rename and inspect ```docker-compose.override.yml``` file
+
+```sh
+cp docker-compose.override.example.yml docker-compose.override.yml
+```
 
 ```sh
 nano docker-compose.override.yml
 ```
 
 
-## Start docker services
+# Start docker services
 
 ```sh
 docker-compose up
@@ -41,18 +58,18 @@ docker-compose up
 
 > Note: use ```-d``` to fee the terminal
 
-#### Test symfony requirements (Optional)
+# Test symfony requirements (Optional)
 
 ```sh
-docker-compose exec php-service symfony check:requirements
+docker-compose exec php_service symfony check:requirements
 ```
 
-## Install symfony
+# Install symfony
 
 Run this if you are building a microservice, console application or API
 
 ```sh
-docker-compose exec php-service symfony new . --version="6.3.*"
+docker-compose exec php_service symfony new . --version="6.3.*"
 ```
 
 or
@@ -60,7 +77,7 @@ or
 run this if you are building a traditional web application
 
 ```sh
-docker-compose exec php-service symfony new . --version="6.3.*" --webapp
+docker-compose exec php_service symfony new . --version="6.3.*" --webapp
 ```
 
 > Note: you can also use:
@@ -71,10 +88,10 @@ docker-compose exec php-service symfony new . --version="6.3.*" --webapp
 
 ```--version=next```
 
-## Validate installation
+# Validate installation
 
 ```sh
-docker-compose exec php-service php bin/console about
+docker-compose exec php_service php bin/console about
 ```
 
 ## Finally navigate to http://localhost:8080/ 
@@ -86,5 +103,20 @@ docker-compose exec php-service php bin/console about
 ## Profiler
 
 ```sh
-docker-compose exec php-service composer require --dev symfony/profiler-pack
+docker-compose exec php_service composer require --dev symfony/profiler-pack
+```
+
+## Doctrine (Optional)
+
+If you are using mysql container setup from [this section](#enable-mysql-connection-using-docker)
+
+```sh
+docker-compose exec php_service composer require symfony/orm-pack
+```
+```sh
+docker-compose exec php_service composer require --dev symfony/maker-bundle
+```
+
+```sh
+docker-compose exec php_service php bin/console doctrine:database:create
 ```

@@ -1,0 +1,17 @@
+version: '3.8'
+
+networks:
+  mysql_network:
+    external: true
+    name: ${MYSQL_NETWORK_NAME}
+
+
+services:
+  php_service:
+    volumes:
+      - ./docker/php/config/100-xdebug.ini:/usr/local/etc/php/conf.d/100-xdebug.ini
+    # bith set in .env file - therefor no value set!
+    environment:
+      - DATABASE_URL
+    networks:
+      - mysql_network
