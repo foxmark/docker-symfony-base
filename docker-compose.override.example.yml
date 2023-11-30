@@ -6,7 +6,7 @@ networks:
     name: ${MYSQL_NETWORK_NAME}
   rabbitmq_network:
     external: true
-    name: rabbitmq_network
+    name: ${RABBITMQ_NETWORK_NAME}
 
 services:
   nginx:
