@@ -4,15 +4,24 @@ networks:
   mysql_network:
     external: true
     name: ${MYSQL_NETWORK_NAME}
-
+  rabbitmq_network:
+    external: true
+    name: rabbitmq_network
 
 services:
+  nginx:
+    networks:
+      - mysql_network
+      - rabbitmq_network
   php:
     volumes:
       - ./docker/php/config/100-xdebug.ini:/usr/local/etc/php/conf.d/100-xdebug.ini
+      - ./docker/php/config/101-amqp.ini:/usr/local/etc/php/conf.d/101-amqp.ini
     user: "${UID}:${GID}"
     # bith set in .env file - therefor no value set!
     environment:
       - DATABASE_URL
+      - MESSENGER_TRANSPORT_DSN
     networks:
       - mysql_network
+      - rabbitmq_network
