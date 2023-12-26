@@ -69,7 +69,8 @@ docker-compose exec php symfony check:requirements
 Run this if you are building a microservice, console application or API
 
 ```sh
-docker-compose exec php symfony new . --version="6.3.*"
+# current LTS => 6.4.1
+docker-compose exec php symfony new . --version="lts"
 ```
 
 or
@@ -77,7 +78,7 @@ or
 run this if you are building a traditional web application
 
 ```sh
-docker-compose exec php symfony new . --version="6.3.*" --webapp
+docker-compose exec php symfony new . --version="lts" --webapp
 ```
 
 > Note: you can also use:
