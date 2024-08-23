@@ -53,7 +53,7 @@ nano docker-compose.override.yml
 # Start docker services
 
 ```sh
-docker-compose up
+docker compose up
 ```
 
 > Note: use ```-d``` to fee the terminal
@@ -61,7 +61,7 @@ docker-compose up
 # Test symfony requirements (Optional)
 
 ```sh
-docker-compose exec php symfony check:requirements
+docker compose exec php symfony check:requirements
 ```
 
 # Install symfony
@@ -70,7 +70,7 @@ Run this if you are building a microservice, console application or API
 
 ```sh
 # current LTS => 6.4.1
-docker-compose exec php symfony new . --version="lts"
+docker compose exec php symfony new . --version="lts"
 ```
 
 or
@@ -78,7 +78,7 @@ or
 run this if you are building a traditional web application
 
 ```sh
-docker-compose exec php symfony new . --version="lts" --webapp
+docker compose exec php symfony new . --version="lts" --webapp
 ```
 
 > Note: you can also use:
@@ -92,7 +92,7 @@ docker-compose exec php symfony new . --version="lts" --webapp
 # Validate installation
 
 ```sh
-docker-compose exec php php bin/console about
+docker compose exec php php bin/console about
 ```
 
 ## Finally navigate to http://localhost:8080/ 
@@ -104,7 +104,7 @@ docker-compose exec php php bin/console about
 ## Profiler
 
 ```sh
-docker-compose exec php composer require --dev symfony/profiler-pack
+docker compose exec php composer require --dev symfony/profiler-pack
 ```
 
 ## Doctrine (Optional)
@@ -112,12 +112,30 @@ docker-compose exec php composer require --dev symfony/profiler-pack
 If you are using mysql container setup from [this section](#enable-mysql-connection-using-docker)
 
 ```sh
-docker-compose exec php composer require symfony/orm-pack
+docker compose exec php composer require symfony/orm-pack
 ```
 ```sh
-docker-compose exec php composer require --dev symfony/maker-bundle
+docker compose exec php composer require --dev symfony/maker-bundle
 ```
 
 ```sh
-docker-compose exec php php bin/console doctrine:database:create
+docker compose exec php php bin/console doctrine:database:create
+```
+
+## Useful Debug tools:
+
+```sh
+docker compose exec php bin/console debug:router
+```
+
+```sh
+docker compose exec php bin/console debug:config
+```
+
+```sh
+docker compose exec php bin/console config:dump
+```
+
+```sh
+docker compose exec php bin/console cache:clear
 ```
