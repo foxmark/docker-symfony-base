@@ -143,3 +143,7 @@ docker compose exec php symfony console cache:clear
 ```sh
 docker compose exec php symfony console debug:autowiring
 ```
+
+```sh
+docker compose exec php symfony console doctrine:fixtures:load
+```
