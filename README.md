@@ -122,6 +122,10 @@ docker compose exec php symfony composer require --dev symfony/maker-bundle
 docker compose exec php symfony console doctrine:database:create
 ```
 
+```sh
+docker compose exec php symfony console doctrine:migrations:migrate
+```
+
 ## Useful Debug tools:
 
 ```sh
