@@ -107,6 +107,12 @@ docker compose exec php symfony console about
 docker compose exec php symfony composer require --dev symfony/profiler-pack
 ```
 
+## Logger
+
+```sh
+docker compose exec php symfony composer require symfony/monolog-bundle
+```
+
 ## Doctrine (Optional)
 
 If you are using mysql container setup from [this section](#enable-mysql-connection-using-docker)
