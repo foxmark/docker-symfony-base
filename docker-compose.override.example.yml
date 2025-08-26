@@ -2,15 +2,15 @@ networks:
   mysql_network:
     external: true
     name: ${MYSQL_NETWORK_NAME}
-  rabbitmq_network:
-    external: true
-    name: ${RABBITMQ_NETWORK_NAME}
+#  rabbitmq_network:
+#    external: true
+#    name: ${RABBITMQ_NETWORK_NAME}
 
 services:
   nginx:
     networks:
       - mysql_network
-      - rabbitmq_network
+#      - rabbitmq_network
 # uncomment to enable https support
 #    volumes:
 #      - ./docker/nginx/https.conf:/etc/nginx/conf.d/https.conf:ro
@@ -28,4 +28,4 @@ services:
       - MESSENGER_TRANSPORT_DSN
     networks:
       - mysql_network
-      - rabbitmq_network
+#      - rabbitmq_network
