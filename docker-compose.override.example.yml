@@ -20,7 +20,7 @@ services:
   php:
     volumes:
       - ./docker/php/config/100-xdebug.ini:/usr/local/etc/php/conf.d/100-xdebug.ini
-      - ./docker/php/config/101-amqp.ini:/usr/local/etc/php/conf.d/101-amqp.ini
+#      - ./docker/php/config/101-amqp.ini:/usr/local/etc/php/conf.d/101-amqp.ini
     user: "${UID}:${GID}"
     # bith set in .env file - therefor no value set!
     environment:
