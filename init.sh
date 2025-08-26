@@ -44,7 +44,19 @@ if [[ "$q4" == "y" || "$q4" == "yes" ]]; then
     fi
 fi
 
+echo "Do you want copy basic template files? (y/n): "
+read q5
+
+if [[ "$q5" == "y" || "$q5" == "yes" ]]; then
+    mkdir app/templates
+    cp misc/basic_template/* app/templates
+fi
+
+chown -R $USER:$USER app/
 
 docker compose exec php symfony console about
 
 echo "Access your app: http://localhost:$HOST_PORT"
+echo
+echo "****INSTALLATION COMPLETED****"
+echo
