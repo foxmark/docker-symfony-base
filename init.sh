@@ -2,16 +2,25 @@
 
 mkdir app
 
-cp .env.example .env
-nano .env
+env_file=".env"
+
+if [[ ! -f "$env_file" ]]; then
+    cp .env.example .env
+    nano .env
+fi
+
 source .env
 
-echo "Do you want create and edit docker-compose.override.yml file? (y/n): "
-read q2
+override_file="docker-compose.override.yml"
 
-if [[ "$q2" == "y" || "$q2" == "yes" ]]; then
-    cp docker-compose.override.example.yml docker-compose.override.yml
-    nano docker-compose.override.yml
+if [[ ! -f "$override_file" ]]; then
+    echo "Do you want create and edit docker-compose.override.yml file? (y/n): "
+    read q2
+
+    if [[ "$q2" == "y" || "$q2" == "yes" ]]; then
+        cp docker-compose.override.example.yml docker-compose.override.yml
+        nano docker-compose.override.yml
+    fi
 fi
 
 docker compose up -d
@@ -24,9 +33,7 @@ echo "Do you want install debug and test tools? (y/n): "
 read q3
 
 if [[ "$q3" == "y" || "$q3" == "yes" ]]; then
-    docker compose exec php symfony composer require --dev symfony/profiler-pack
-    docker compose exec php symfony composer require --dev symfony/debug-bundle 
-    docker compose exec php symfony composer require --dev symfony/test-pack
+    docker compose exec php symfony composer require --dev symfony/profiler-pack symfony/debug-bundle symfony/test-pack
 fi
 
 echo "Do you want install doctrine? (y/n): "
@@ -44,11 +51,16 @@ if [[ "$q4" == "y" || "$q4" == "yes" ]]; then
     fi
 fi
 
+
 echo "Do you want copy basic template files? (y/n): "
 read q5
 
 if [[ "$q5" == "y" || "$q5" == "yes" ]]; then
-    mkdir app/templates
+    templates_dir="app/templates"
+
+    if [[ ! -d "$templates_dir" ]]; then
+        mkdir -p "app/templates"
+    fi
     cp misc/basic_template/* app/templates
 fi
 
