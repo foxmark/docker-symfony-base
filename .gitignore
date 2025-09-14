@@ -3,4 +3,5 @@
 app
 docker-compose.override.yml
 .env
-
+.vscode
+_local
