@@ -40,7 +40,7 @@ echo "Do you want install doctrine? (y/n): "
 read q4
 
 if [[ "$q4" == "y" || "$q4" == "yes" ]]; then
-    docker compose exec php symfony composer require symfony/orm-pack
+    docker compose exec php symfony composer require symfony/orm-pack --no-interaction --no-scripts
     docker compose exec php symfony composer require --dev doctrine/doctrine-fixtures-bundle
 
     echo "Do you want create new database for the project? (y/n): "
@@ -51,6 +51,22 @@ if [[ "$q4" == "y" || "$q4" == "yes" ]]; then
     fi
 fi
 
+echo "Do you want install API Platform bundle? (y/n): "
+read q6
+
+if [[ "$q6" == "y" || "$q6" == "yes" ]]; then
+    docker compose exec php symfony composer require api
+    #docker compose exec php symfony composer require lexik/jwt-authentication-bundle
+    #docker compose exec php symfony console lexik:jwt:generate-keypair
+fi
+
+echo "Do you want install JWT bundle? (y/n): "
+read q7
+
+if [[ "$q7" == "y" || "$q7" == "yes" ]]; then
+    docker compose exec php symfony composer require lexik/jwt-authentication-bundle
+    docker compose exec php symfony console lexik:jwt:generate-keypair
+fi
 
 echo "Do you want copy basic template files? (y/n): "
 read q5
