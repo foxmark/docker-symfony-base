@@ -1,6 +1,8 @@
 #!/bin/bash
 
-mkdir app
+if [[ ! -d "app" ]]; then
+  mkdir app
+fi
 
 env_file=".env"
 
@@ -25,7 +27,7 @@ fi
 
 docker compose up -d
 docker compose exec php symfony check:requirements
-docker compose exec php symfony new . --no-git --version="lts"
+docker compose exec php symfony new . --version="lts"
 docker compose exec php symfony composer require symfony/monolog-bundle
 docker compose exec php symfony composer require --dev symfony/maker-bundle
 
