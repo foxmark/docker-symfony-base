@@ -5,6 +5,7 @@ networks:
 services:
   nginx:
     image: nginx:stable-alpine
+    container_name: ${APP_NAME}-nginx
     ports:
       - "${HOST_PORT}:80"
     volumes:
@@ -19,6 +20,7 @@ services:
 
   php:
     image: foxmark/php8.2.12-fpm:${PHP_IMAGE_VERSION}
+    container_name: ${APP_NAME}-php
     volumes:
       - ./app:/app
       - ./docker/php/config/99-php.ini:/usr/local/etc/php/conf.d/99-php.ini

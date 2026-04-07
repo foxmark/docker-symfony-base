@@ -9,6 +9,7 @@ networks:
 services:
   nginx:
     networks:
+      - app_network
       - mysql_network
 #      - rabbitmq_network
 # uncomment to enable https support
@@ -27,5 +28,6 @@ services:
       - DATABASE_URL
       - MESSENGER_TRANSPORT_DSN
     networks:
+      - app_network
       - mysql_network
 #      - rabbitmq_network
